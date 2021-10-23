@@ -1,5 +1,4 @@
 import { configureStore, createAction, createSlice, SliceCaseReducers, ValidateSliceCaseReducers } from '@reduxjs/toolkit';
-import { Reducer } from 'redux';
 
 export interface State {
   readonly counter: 0;
@@ -17,8 +16,6 @@ export interface MyAction {
     readonly amount?: number;
   }
 }
-
-type MyReducer = Reducer<State, MyAction>;
 
 const initialState: State = { counter: 0, showCounter: true };
 
