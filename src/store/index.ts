@@ -50,6 +50,9 @@ const store = configureStore({
   reducer: reducer
 });
 
+/**
+ * Interface to dispatch actions through meaningfully named methods
+ */
 export const actions = whole.actions;
 
 const IncrementCreator = createAction<{ readonly amount: number; }, MyActionType>('counter/increment');
