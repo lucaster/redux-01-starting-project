@@ -6,7 +6,9 @@ export interface State {
 
 export type MyActionType = 'increment' | 'decrement';
 
-export interface MyAction extends Action<MyActionType> {}
+export interface MyAction extends Action<MyActionType> {
+  readonly amount: number;
+}
 
 type MyReducer = Reducer<State, MyAction>;
 
@@ -23,13 +25,13 @@ const reducer: MyReducer = (state, action) => {
   if (action.type === 'increment') {
     return {
       ...state,
-      counter: state!.counter + 1
+      counter: state!.counter + action.amount
     } as State;
   }
   if (action.type === 'decrement') {
     return {
       ...state,
-      counter: state!.counter - 1
+      counter: state!.counter - action.amount
     } as State;
   }
   return {
