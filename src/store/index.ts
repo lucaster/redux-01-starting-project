@@ -1,12 +1,12 @@
 import { Action, createStore, Reducer } from 'redux';
 
-interface State {
+export interface State {
   readonly counter: 0;
 }
 
-type MyActionType = 'increment';
+export type MyActionType = 'increment' | 'decrement';
 
-interface MyAction extends Action<MyActionType> {}
+export interface MyAction extends Action<MyActionType> {}
 
 type MyReducer = Reducer<State, MyAction>;
 
@@ -24,6 +24,12 @@ const reducer: MyReducer = (state, action) => {
     return {
       ...state,
       counter: state!.counter + 1
+    } as State;
+  }
+  if (action.type === 'decrement') {
+    return {
+      ...state,
+      counter: state!.counter - 1
     } as State;
   }
   return {
