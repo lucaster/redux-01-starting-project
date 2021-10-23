@@ -37,9 +37,7 @@ const reducer: MyReducer = (state = initialState, action) => {
   }
   // {"type":"@@redux/INITv.e.9.l.v.i"} WTF
   console.debug('reducer', 'ignoring unknown action', JSON.stringify(action));
-  return {
-    ...state,
-  };
+  return state;
 };
 
 const store = createStore(reducer, initialState);
