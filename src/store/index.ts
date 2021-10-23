@@ -1,14 +1,18 @@
-import { configureStore, createSlice } from '@reduxjs/toolkit';
-import { Action, Reducer } from 'redux';
+import { configureStore, createAction, createSlice } from '@reduxjs/toolkit';
+import { Reducer } from 'redux';
 
 export interface State {
   readonly counter: 0;
   readonly showCounter: boolean;
 }
 
-export type MyActionType = 'increment' | 'decrement' | 'toggle';
+/**
+ * Use the slice name as prefix:
+ */
+export type MyActionType = 'counter/increment' | 'counter/decrement' | 'counter/toggle';
 
-export interface MyAction extends Action<MyActionType> {
+export interface MyAction {
+  readonly type: MyActionType;
   readonly payload: {
     readonly amount?: number;
   }
@@ -19,7 +23,7 @@ type MyReducer = Reducer<State, MyAction>;
 const initialState: State = { counter: 0, showCounter: true };
 
 const whole = createSlice({
-  name: 'whole',
+  name: 'counter',
   initialState: initialState,
   // this object represents the switch statement inside the reducer fn:
   // we can mutate state in these functions, because the state here is a mutable proxy
@@ -47,5 +51,12 @@ const store = configureStore({
 });
 
 export const actions = whole.actions;
+
+const IncrementCreator = createAction<{ readonly amount: number; }, MyActionType>('counter/increment');
+const DecrementCreator = createAction<{ readonly amount: number; }, MyActionType>('counter/decrement');
+const ToggleCreator = createAction<any, MyActionType>('counter/toggle');
+export const buildIncrementAction = (amount: number) => IncrementCreator({ amount });
+export const buildDecrementAction = (amount: number) => DecrementCreator({ amount });
+export const buildToggleAction = () => ToggleCreator(undefined);
 
 export default store;
