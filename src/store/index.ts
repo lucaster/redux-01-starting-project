@@ -30,4 +30,3 @@ const reducer: MyReducer = (state, action) => {
 const store = createStore(reducer, initialState);
 
 export default store;
-
