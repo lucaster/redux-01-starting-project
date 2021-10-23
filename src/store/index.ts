@@ -15,14 +15,8 @@ type MyReducer = Reducer<State, MyAction>;
 
 const initialState: State = { counter: 0, showCounter: true };
 
-const reducer: MyReducer = (state, action) => {
-  // {"type":"@@redux/INITv.e.9.l.v.i"} WTF
+const reducer: MyReducer = (state = initialState, action) => {
   console.debug('reducer', JSON.stringify({ state, action }));
-  if (!state) {
-    return {
-      ...initialState,
-    };
-  }
   if (action.type === 'increment') {
     return {
       ...state,
@@ -41,6 +35,7 @@ const reducer: MyReducer = (state, action) => {
       showCounter: !state.showCounter
     };
   }
+  // {"type":"@@redux/INITv.e.9.l.v.i"} WTF
   return {
     ...state,
   };
