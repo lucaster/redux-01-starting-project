@@ -13,6 +13,8 @@ type MyReducer = Reducer<State, MyAction>;
 const initialState: State = { counter: 0 };
 
 const reducer: MyReducer = (state, action) => {
+  // {"type":"@@redux/INITv.e.9.l.v.i"} WTF
+  console.debug('reducer', JSON.stringify({ state, action }));
   if (!state) {
     return {
       ...initialState
@@ -24,7 +26,9 @@ const reducer: MyReducer = (state, action) => {
       counter: state!.counter + 1
     } as State;
   }
-  throw new Error('unknown action: ' + JSON.stringify(action));
+  return {
+    ...state
+  }
 };
 
 const store = createStore(reducer, initialState);
