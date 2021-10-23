@@ -38,7 +38,7 @@ const whole = createSlice({
       state.counter -= (action as MyAction).payload.amount!;
     },
     toggle: (state, action) => {
-      console.debug('createSlice', 'togglecrement', JSON.stringify({state, action}));
+      console.debug('createSlice', 'toggle', JSON.stringify({state, action}));
       state.showCounter = !state.showCounter;
     }
   }
