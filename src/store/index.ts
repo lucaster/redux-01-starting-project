@@ -2,7 +2,7 @@ import { Action, createStore, Reducer } from 'redux';
 
 export interface State {
   readonly counter: 0;
-  readonly show: boolean;
+  readonly showCounter: boolean;
 }
 
 export type MyActionType = 'increment' | 'decrement' | 'toggle';
@@ -13,7 +13,7 @@ export interface MyAction extends Action<MyActionType> {
 
 type MyReducer = Reducer<State, MyAction>;
 
-const initialState: State = { counter: 0, show: true };
+const initialState: State = { counter: 0, showCounter: true };
 
 const reducer: MyReducer = (state, action) => {
   // {"type":"@@redux/INITv.e.9.l.v.i"} WTF
@@ -38,7 +38,7 @@ const reducer: MyReducer = (state, action) => {
   if (action.type === 'toggle') {
     return {
       ...state,
-      show: !state.show
+      showCounter: !state.showCounter
     };
   }
   return {

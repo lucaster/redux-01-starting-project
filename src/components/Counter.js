@@ -4,9 +4,9 @@ import classes from './Counter.module.css';
 const Counter = () => {
   console.debug('Counter');
   // sets up a subscription
-  const { counter, show } = useSelector((state) => ({
+  const { counter, showCounter } = useSelector((state) => ({
     counter: state.counter,
-    show: state.show
+    showCounter: state.showCounter
   }));
   const dispatch = useDispatch();
 
@@ -34,7 +34,7 @@ const Counter = () => {
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
       {
-        show &&
+        showCounter &&
         <>
           <div className={classes.value}>{counter}</div>
           <div>
