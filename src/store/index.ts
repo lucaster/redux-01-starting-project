@@ -16,8 +16,6 @@ type MyReducer = Reducer<State, MyAction>;
 const initialState: State = { counter: 0, show: true };
 
 const reducer: MyReducer = (state, action) => {
-  // {"type":"@@redux/INITv.e.9.l.v.i"} WTF
-  console.debug('reducer', JSON.stringify({ state, action }));
   if (!state) {
     return {
       ...initialState,
@@ -41,6 +39,8 @@ const reducer: MyReducer = (state, action) => {
       show: !state.show
     };
   }
+  // {"type":"@@redux/INITv.e.9.l.v.i"} WTF
+  console.debug('reducer', JSON.stringify({ state, action }));
   return {
     ...state,
   };
