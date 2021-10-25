@@ -17,7 +17,10 @@ interface MyAction {
   }
 }
 
-const initialCounterState: CounterState = { counter: 0, showCounter: true };
+const initialCounterState: CounterState = {
+  counter: 0,
+  showCounter: true
+};
 
 export const couterSlice = createSlice({
   name: 'counter',
