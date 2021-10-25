@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { buildDecrementAction, buildIncrementAction, buildToggleAction } from '../store/index';
+import { actions, buildDecrementAction, buildToggleAction } from '../store/index';
 import classes from './Counter.module.css';
 
 const Counter = () => {
@@ -12,7 +12,7 @@ const Counter = () => {
   const dispatch = useDispatch();
 
   const handleIncrement = (amount) => (clickEvent) => {
-    dispatch(buildIncrementAction(amount));
+    dispatch(actions.increment({ amount: 1 }));
   };
 
   const handleDecrement = (amount) => (clickEvent) => {
