@@ -38,7 +38,7 @@ const reducers: ValidateSliceCaseReducers<State, SliceCaseReducers<State>> = {
   }
 };
 
-const whole = createSlice({
+const couterSlice = createSlice({
   name: 'counter',
   initialState: initialState,
   reducers: {
@@ -57,16 +57,16 @@ const whole = createSlice({
   }
 });
 
-const reducer = whole.reducer;
+const counterReducer = couterSlice.reducer;
 
-const store = configureStore({
-  reducer: reducer
+const counterStore = configureStore({
+  reducer: counterReducer
 });
 
 /**
  * Interface to dispatch actions through meaningfully named methods
  */
-export const actions = whole.actions;
+export const actions = couterSlice.actions;
 
 const IncrementCreator = createAction<{ readonly amount: number; }, MyActionType>('counter/increment');
 const DecrementCreator = createAction<{ readonly amount: number; }, MyActionType>('counter/decrement');
@@ -76,4 +76,4 @@ export const buildIncrementAction = (amount: number) => IncrementCreator({ amoun
 export const buildDecrementAction = (amount: number) => DecrementCreator({ amount });
 export const buildToggleAction = () => ToggleCreator(undefined);
 
-export default store;
+export default counterStore;
