@@ -1,6 +1,6 @@
 import { configureStore, createAction, createSlice } from '@reduxjs/toolkit';
 
-export interface State {
+export interface CounterState {
   readonly counter: 0;
   readonly showCounter: boolean;
 }
@@ -17,11 +17,11 @@ export interface MyAction {
   }
 }
 
-const initialState: State = { counter: 0, showCounter: true };
+const initialCounterState: CounterState = { counter: 0, showCounter: true };
 
 const couterSlice = createSlice({
   name: 'counter',
-  initialState: initialState,
+  initialState: initialCounterState,
   reducers: {
     increment: (state, action) => {
       console.debug('createSlice', 'increment', JSON.stringify({ state, action }));
@@ -38,16 +38,10 @@ const couterSlice = createSlice({
   }
 });
 
-const counterReducer = couterSlice.reducer;
-
-const counterStore = configureStore({
-  reducer: counterReducer
-});
-
 /**
  * Interface to dispatch actions through meaningfully named methods
  */
-export const actions = couterSlice.actions;
+export const counterActions = couterSlice.actions;
 
 const IncrementCreator = createAction<{ readonly amount: number; }, MyActionType>('counter/increment');
 const DecrementCreator = createAction<{ readonly amount: number; }, MyActionType>('counter/decrement');
@@ -57,4 +51,34 @@ export const buildIncrementAction = (amount: number) => IncrementCreator({ amoun
 export const buildDecrementAction = (amount: number) => DecrementCreator({ amount });
 export const buildToggleAction = () => ToggleCreator(undefined);
 
-export default counterStore;
+interface AuthState {
+  readonly authenticated: boolean
+}
+
+const initialAuthState: AuthState = {
+  authenticated: false
+};
+
+const authSlice = createSlice({
+  name: 'auth',
+  initialState: initialAuthState,
+  reducers: {
+    login: (state, action) => {
+      state.authenticated = true;
+    },
+    logout: (state, action) => {
+      state.authenticated = false;
+    }
+  }
+});
+
+export const authActions = authSlice.actions;
+
+const store = configureStore({
+  reducer: {
+    counter: couterSlice.reducer,
+    auth: authSlice.reducer
+  }
+});
+
+export default store;

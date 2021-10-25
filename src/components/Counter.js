@@ -1,18 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { actions, buildDecrementAction, buildToggleAction } from '../store/index';
+import { buildDecrementAction, buildToggleAction, counterActions } from '../store/index';
 import classes from './Counter.module.css';
 
 const Counter = () => {
   console.debug('Counter');
   // sets up a subscription
   const { counter, showCounter } = useSelector((state) => ({
-    counter: state.counter,
-    showCounter: state.showCounter
+    counter: state.counter.counter,
+    showCounter: state.counter.showCounter
   }));
   const dispatch = useDispatch();
 
   const handleIncrement = (amount) => (clickEvent) => {
-    dispatch(actions.increment({ amount: 1 }));
+    dispatch(counterActions.increment({ amount: 1 }));
   };
 
   const handleDecrement = (amount) => (clickEvent) => {
