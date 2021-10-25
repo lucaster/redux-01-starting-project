@@ -14,10 +14,12 @@ function App() {
     <>
       <Header />
       {
-        !authenticated && <Auth />
+        !authenticated &&
+        <Auth />
       }
       {
-        authenticated && <>
+        authenticated &&
+        <>
           <Counter />
           <UserProfile />
         </>
